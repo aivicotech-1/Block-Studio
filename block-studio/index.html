@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Block Studio</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%2790%27 font-size=%2790%27%3E%F0%9F%A7%A9%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+<span class="logo">Block Studio</span>
+<nav class="nav" aria-label="Main menu">
+<div class="mi"><button class="menu">File</button><div class="dd"><button data-a="new">New</button><button data-a="load">Load from your computer</button><button data-a="save">Save to your computer</button><button data-a="share">Share</button><button data-a="link">Open File from Link or QR code</button><button data-a="ml">Open ML Environment</button></div></div>
+<div class="mi"><button class="menu">Edit</button><div class="dd"><button data-a="restore">Restore</button><button data-a="redo">Redo</button><button data-a="undo">Undo</button></div></div>
+<div class="mi"><button class="menu">Learn</button><div class="dd"><button data-a="gs">Getting Started</button><button data-a="tut">Tutorials</button><button data-a="exs">Examples</button><button data-a="help">Help</button></div></div>
+<button class="menu" id="bdBtn" data-a="board">Board</button><button class="menu" id="cnBtn" data-a="connect">Connect</button></nav>
+<input class="pname" id="pname" value="My Project" aria-label="Project name"><button class="menu" data-a="save" title="Save">💾</button>
+<div class="seg"><span>Mode</span><button class="on" id="mStage">Stage</button><button id="mUp">Upload</button></div><button class="menu" id="pymode">Python</button>
+<div class="run"><button class="ud" data-a="fw">Upload Firmware</button><button class="ud" data-a="undo" title="Undo">↶</button><button class="ud" data-a="redo" title="Redo">↷</button><button class="go" id="go">Green flag</button><button class="stop" id="stop">Stop</button></div>
+</header>
+<div class="tabs" role="tablist"><button role="tab" id="tB" aria-selected="true">Blocks</button><button role="tab" id="tP" aria-selected="false">Python</button><button role="tab" id="tC" aria-selected="false">Costumes</button><button role="tab" id="tS" aria-selected="false">Sounds</button></div>
+<div class="ov" id="ov" hidden><div class="dlg" id="dlg"><div class="dh"><span id="dt"></span><button id="dx" aria-label="Close">✕</button></div><div class="db" id="db"></div></div></div>
+<main>
+<nav class="cats" id="cats" aria-label="Block categories"></nav>
+<section class="palette" id="palette" aria-label="Block palette"></section>
+<section class="workspace" id="ws" aria-label="Scripts area"><p class="hint" id="hint">Drag blocks from the palette into this area (or click them), then press Green flag.</p><div class="stack" id="stack"></div><pre class="py" id="py" hidden></pre></section>
+<section id="cs" hidden aria-label="Costume and sound editor"></section>
+<aside class="side">
+<div class="stb"><button data-s="240" title="Small stage">S</button><button data-s="340" title="Normal stage">M</button><button data-s="480" title="Large stage">L</button><button id="sShot" title="Take a snapshot of the Stage">📷</button><button id="sFull" title="Full screen (Esc to exit)">⛶ Full</button></div>
+<div class="stage" id="stage"><video id="cam" autoplay muted playsinline hidden></video><div class="fm" id="fm" hidden></div><div class="sprite" id="sp">🐱</div></div>
+<div class="stat" id="stat">Stage · x: 0 y: 0 · direction: 90</div>
+<div class="stat" id="ai">AI: camera off</div>
+<input id="said" placeholder="Speech / text box: type here or use Speech and OCR blocks">
+<div class="info">
+<h4>Sprite</h4><div class="sprp"><label>Sprite <input id="spn" value="Sprite1"></label><label>x <input id="px" type="number" value="0"></label><label>y <input id="py2" type="number" value="0"></label><label>Show <button id="shw" class="chip on">👁</button><button id="hid" class="chip">🚫</button></label><label>Size <input id="psz" type="number" value="100"></label><label>Direction <input id="pdr" type="number" value="90"></label></div>
+<div class="row" id="sprl" style="margin-top:6px"></div><div class="fabrow"><span class="fw" id="fwS"><button class="fab" aria-label="Add a sprite">🐻</button></span></div>
+<h4>Backdrops</h4><div class="row" id="bkr"></div><div class="fabrow"><span class="fw" id="fwB"><button class="fab bk" aria-label="Add a backdrop">🖼</button></span></div>
+<h4>Backpack</h4><div class="row" id="bpr"></div><div class="row" style="margin-top:6px"><button class="chip" id="bpS">+ Scripts</button><button class="chip" id="bpC">+ Costume</button></div>
+<h4>Extensions</h4><div class="row" id="exts"></div>
+<h4>Hardware (virtual board)</h4><div class="hw"><div><span class="led" id="hled"></span> LED · <span id="hmot">Motor 0%</span> · <span id="hsrv">Servo 90°</span></div>
+<label>Temperature <span id="vt">25</span>°C<input type="range" id="st" min="0" max="50" value="25"></label>
+<label>Light <span id="vl">50</span>%<input type="range" id="sl" min="0" max="100" value="50"></label>
+<label>Distance <span id="vd">100</span> cm<input type="range" id="sd" min="0" max="200" value="100"></label>
+<div class="row"><button id="hbtn">Hold to press button</button><button id="hser">Connect USB</button><button id="hble">Connect Bluetooth</button></div><div class="stat" id="hlog" style="padding:0">Hardware: virtual board only</div></div>
+</div>
+</aside>
+</main>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Dependencies
+node_modules/
+
+# Environment files
+.env
+!.env.example
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.log
