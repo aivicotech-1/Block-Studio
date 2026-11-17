@@ -26,7 +26,7 @@ var ex = document.getElementById("exts"); EXT.forEach(function (n) {
   }; ex.appendChild(s)
 });
 var drag = null;
-function hint() { document.getElementById("hint").style.display = (stack.children.length || pyOn) ? "none" : "block"; indent(); if (pyOn) render(); hist2() }
+function hint() { document.getElementById("hint").style.display = (stack.children.length || pyOn) ? "none" : "block"; indent(); if (pyOn) render(); hist2(); queueAutosave() }
 function add(t, c, before) {
   var b = document.createElement("div"); b.className = "blk"; b.style.background = col(c); t.split(/(-?\d+)/).forEach(function (s, i) { if (i % 2) { var f = document.createElement('input'); f.value = s; f.size = 3; b.appendChild(f) } else if (s) b.appendChild(document.createTextNode(s)) }); b.dataset.c = c; b.draggable = true; b.title = "Drag to reorder, drag to the palette or double-click to delete";
   b.ondragstart = function (e) { drag = { t: t, c: c, el: b }; e.dataTransfer.setData('text/plain', t); e.dataTransfer.effectAllowed = 'move' };
@@ -215,9 +215,46 @@ function doRestore() { var g = trash.pop(); if (!g) return aiMsg('nothing to res
 function doNew() { var g = []; Array.prototype.forEach.call(stack.children, function (e) { g.push({ t: txt(e), c: e.dataset.c }) }); if (g.length) trash.push(g); stack.innerHTML = ''; hint(); stop(); aiMsg('new project (Edit > Restore brings the blocks back)') }
 function dlg(t, h, g) { $('dt').textContent = t; $('db').innerHTML = h; $('dlg').className = 'dlg' + (g ? ' g' : ''); $('ov').hidden = false }
 function closeDlg() { $('ov').hidden = true }
-function projJSON() { return JSON.stringify({ name: $('pname').value, blocks: JSON.parse(snap()) }, null, 1) }
-function loadProj(s) { try { var p = JSON.parse(s); if (p.name) $('pname').value = p.name; setStack(p.blocks || []); undo = []; redo = []; aiMsg('project loaded'); closeDlg() } catch (e) { aiMsg('that is not a valid project') } }
-function loadEx(i) { setStack(EXS[i][1].map(function (b) { return { t: b[0], c: b[1] } })); undo = []; redo = []; closeDlg() }
+function currentProject() { return BlockStudioProjectStore.create($('pname').value, JSON.parse(snap())) }
+function projJSON() { return BlockStudioProjectStore.serialize(currentProject()) }
+function loadProj(s) {
+  var p;
+  try { p = BlockStudioProjectStore.parse(s) }
+  catch (e) { aiMsg('Could not load project: ' + e.message); return false }
+  $('pname').value = p.name;
+  setStack(p.blocks);
+  undo = []; redo = [];
+  aiMsg('project loaded'); closeDlg(); queueAutosave();
+  return true
+}
+var autosaveTimer = null, autosaveWarned = false;
+function saveRecovery() {
+  try {
+    BlockStudioProjectStore.save(localStorage, currentProject());
+    autosaveWarned = false;
+  } catch (e) {
+    if (!autosaveWarned) aiMsg('Autosave unavailable: ' + e.message);
+    autosaveWarned = true;
+  }
+}
+function queueAutosave() {
+  if (autosaveTimer !== null) clearTimeout(autosaveTimer);
+  autosaveTimer = setTimeout(function () { autosaveTimer = null; saveRecovery() }, 300);
+}
+function restoreRecovery() {
+  try {
+    var p = BlockStudioProjectStore.restore(localStorage);
+    if (p) {
+      $('pname').value = p.name;
+      setStack(p.blocks);
+      undo = []; redo = [];
+      aiMsg('Recovered your last autosaved project');
+    }
+  } catch (e) {
+    aiMsg('Could not recover autosaved project: ' + e.message);
+  }
+}
+function loadEx(i) { tab('tB'); setStack(EXS[i][1].map(function (b) { return { t: b[0], c: b[1] } })); undo = []; redo = []; closeDlg() }
 function setBoard(i) { board = BD[i][0]; $('bdBtn').title = 'Board: ' + board; Array.prototype.forEach.call(document.querySelectorAll('.info h4'), function (h) { if (/^Hardware/.test(h.textContent)) h.textContent = 'Hardware (' + board + ', virtual)' }); hwLog('board set to ' + board); closeDlg() }
 function boardDlg() { dlg('Select Board', '<div class=bg>' + BD.map(function (b, i) { return '<button class="bc' + (b[0] === board ? ' on' : '') + '" data-a=bd data-i=' + i + '><span>' + b[1] + '</span>' + b[0] + '</button>' }).join('') + '</div><p class=mu>Boards are listed for selection and share the virtual board. Real USB or Bluetooth connection is under Connect.</p>', 1) }
 function conDlg() { var st = wr ? 'USB serial connected' : bleChar ? 'Bluetooth connected' : 'Not connected (virtual board active)'; dlg('Connect', '<p><b>Board:</b> ' + board + '</p><p><b>Status:</b> ' + st + '</p><button class=pb data-a=usb>Connect via USB</button><button class=pb data-a=ble>Connect via Bluetooth</button><button class=pb data-a=disc>Disconnect</button><p class=mu>USB needs Web Serial and Bluetooth needs Web Bluetooth (Chrome or Edge). If the browser blocks them, the virtual board keeps working.</p>', 1) }
@@ -233,13 +270,13 @@ function act(a, el) {
     case 'link': dlg('Open File from Link or QR code', '<p>Paste a saved project here. Loading from web links or scanning QR codes is not available in this build.</p><textarea id=lk></textarea><button class=pb data-a=openpaste>Open</button>'); break;
     case 'openpaste': loadProj($('lk').value); break;
     case 'ml': { var m = Array.prototype.filter.call(document.querySelectorAll('#exts button'), function (x) { return x.textContent.indexOf('Machine Learning') > -1 })[0]; if (m) m.click() } break;
-    case 'gs': dlg('Getting Started', '<ol><li>Pick blocks from the palette, or drag them into the scripts area.</li><li>Press the Green flag to run them on the Stage.</li><li>Add an AI or hardware extension from Extensions.</li><li>Use Board and Connect to choose and link a board.</li><li>Press Python to see your blocks as code.</li></ol>'); break;
+    case 'gs': dlg('Getting Started', '<ol><li>Pick blocks from the palette, or drag them into the scripts area.</li><li>Press the Green flag to run them on the Stage.</li><li>Add an AI or hardware extension from Extensions.</li><li>Use Board and Connect to choose and link a board.</li><li>Open Python to edit and run Python files; block examples run in the Blocks workspace.</li></ol>'); break;
     case 'tut': dlg('Tutorials', '<p><b>1. Make the cat move</b><br>Stack move, turn and say blocks. <button class=pb data-a=ex data-i=0>Try it</button></p><p><b>2. Loops</b><br>Repeat actions forever. <button class=pb data-a=ex data-i=1>Try it</button></p><p><b>3. AI: follow your face</b><br>Needs the camera. <button class=pb data-a=ex data-i=2>Try it</button></p><p><b>4. Control hardware</b><br>Blink the virtual LED. <button class=pb data-a=ex data-i=3>Try it</button></p>'); break;
     case 'exs': dlg('Examples', '<p>Load a ready-made project:</p>' + EXS.map(function (e, j) { return '<button class=pb data-a=ex data-i=' + j + '>' + e[0] + '</button>' }).join('')); break;
     case 'ex': loadEx(i); break;
     case 'help': dlg('Help', '<ul><li>Drag blocks into the scripts area, or click a block to add it.</li><li>Double-click a block, or drag it back to the palette, to delete it. Edit > Restore brings it back.</li><li>Click numbers inside blocks to change them.</li><li>Camera blocks need permission; hover the Stage to simulate a face if the camera is blocked.</li><li>Board and Connect set up the virtual board or a real one.</li></ul>'); break;
     case 'board': boardDlg(); break; case 'bd': setBoard(i); break;
-    case 'connect': conDlg(); break; case 'fw': fwDlg(); break; case 'fwgo': fwGo(); break; case 'bkc': addBackdrop('Colour ' + (BK.length + 1), $('bkc').value); closeDlg(); break; case 'snc': COS.push({ n: 'Snapshot ' + (COS.length + 1), e: '', img: snapU }); cosI = COS.length - 1; showCos(); closeDlg(); aiMsg('snapshot added as a costume'); break; case 'snd': { var sa = document.createElement('a'); sa.href = snapU; sa.download = 'stage.png'; sa.click() } break;
+    case 'connect': conDlg(); break; case 'fw': fwDlg(); break; case 'fwgo': fwGo(); break; case 'bkc': addBackdrop('Colour ' + (BK.length + 1), $('bkc').value); closeDlg(); break; case 'snc': COS.push({ n: 'Snapshot ' + (COS.length + 1), e: '', img: snapU }); cosI = COS.length - 1; showCos(); closeDlg(); aiMsg('snapshot added as a costume'); break; case 'snd': { var bytes = Uint8Array.from(atob(snapU.split(',')[1]), function (c) { return c.charCodeAt(0) }); var imageURL = URL.createObjectURL(new Blob([bytes], { type: 'image/png' })); var sa = document.createElement('a'); sa.href = imageURL; sa.download = 'stage.png'; sa.click(); setTimeout(function () { URL.revokeObjectURL(imageURL) }, 1000) } break;
     case 'usb': $('hser').click(); closeDlg(); break; case 'ble': $('hble').click(); closeDlg(); break;
     case 'disc': try { if (wr) wr.releaseLock() } catch (e) { } wr = null; bleChar = null; hwLog('disconnected'); conDlg(); break;
   }
@@ -272,7 +309,20 @@ function playS(n) {
   var o = AC.createOscillator(), g = AC.createGain(), t = AC.currentTime; o.type = s.w; o.frequency.setValueAtTime(s.f[0] * pitch, t); s.f.forEach(function (f, i) { if (i) o.frequency.linearRampToValueAtTime(f * pitch, t + s.d * i / (s.f.length - 1)) }); g.gain.setValueAtTime(.3 * vol, t); g.gain.linearRampToValueAtTime(0, t + s.d); o.connect(g); g.connect(AC.destination); o.start(t); o.stop(t + s.d); auds.push(o); return sleep(s.d * 1000)
 }
 function stopSnd() { auds.forEach(function (a) { try { a.stop ? a.stop() : a.pause() } catch (e) { } }); auds = [] }
-function rec() { if (mr) { mr.stop(); return } navigator.mediaDevices.getUserMedia({ audio: true }).then(function (s) { chunks = []; mr = new MediaRecorder(s); mr.ondataavailable = function (e) { chunks.push(e.data) }; mr.onstop = function () { s.getTracks().forEach(function (t) { t.stop() }); SND.push({ n: 'Recording ' + (SND.length + 1), url: URL.createObjectURL(new Blob(chunks)) }); mr = null; showSounds() }; mr.start(); $('srec').textContent = 'Stop recording' }).catch(function () { $('sm').textContent = 'Microphone blocked or unavailable here.' }) }
+function rec() {
+  if (mr) { mr.stop(); return }
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { $('sm').textContent = 'Microphone access is unavailable.'; return }
+  navigator.mediaDevices.getUserMedia({ audio: true }).then(function (stream) {
+    chunks = []; mr = new MediaRecorder(stream);
+    mr.ondataavailable = function (event) { chunks.push(event.data) };
+    mr.onstop = function () {
+      stream.getTracks().forEach(function (track) { track.stop() });
+      var blob = new Blob(chunks, { type: mr.mimeType || 'audio/webm' }); mr = null;
+      var reader = new FileReader(); reader.onload = function () { SND.push({ n: 'Recording ' + (SND.length + 1), url: reader.result }); showSounds(); queueAutosave() }; reader.readAsDataURL(blob);
+    };
+    mr.start(); $('srec').textContent = 'Stop recording';
+  }).catch(function () { $('sm').textContent = 'Microphone blocked or unavailable here.' });
+}
 function SB(t, p, r) { X.push({ c: '', t: t, k: K(t), p: p, r: r }) }
 SND.slice(0, 5).forEach(function (s) { SB('play sound ' + s.n + ' until done', 'sound.play_until_done(' + JSON.stringify(s.n) + ')', function () { return playS(s.n) }); SB('start sound ' + s.n, 'sound.play(' + JSON.stringify(s.n) + ')', function () { playS(s.n) }) });
 SB('stop all sounds', 'sound.stop_all()', stopSnd); SB('change volume by -10', 'sound.change_volume(#)', function (t, n) { vol = Math.max(0, Math.min(1, vol + n / 100)) }); SB('next costume', 'sprite.next_costume()', nextCos); SB('change size by 10', 'sprite.change_size(#)', function (t, n) { size = Math.max(10, size + n) });
@@ -357,6 +407,7 @@ function mkFab(id, items) { var w = $(id), m = document.createElement('div'); m.
 mkFab('fwS', [['⬆', 'Upload Sprite', function () { fuK = 's'; fu.click() }], ['✨', 'Surprise', function () { var d = rnd(LIB); addSprite(d[0], d[1]) }], ['🖌', 'Paint', function () { addSprite('Sprite', '', blank()); tab('tC') }], ['🎒', 'Choose from Backpack', bpDlg], ['🔍', 'Choose a Sprite', function () { libDlg('s') }]]);
 mkFab('fwB', [['⬆', 'Upload Backdrop', function () { fuK = 'b'; fu.click() }], ['✨', 'Surprise', function () { var d = rnd(BL); addBackdrop(d[0], d[1]) }], ['🖌', 'Paint', function () { dlg('Paint a Backdrop', '<p>Pick a colour for the backdrop:</p><input type=color id=bkc value=#cfe8ff><button class=pb data-a=bkc>Use colour</button>') }], ['🔍', 'Choose a Backdrop', function () { libDlg('b') }]]);
 $('spn').oninput = function () { SP[spi].n = this.value; listSp() };
+$('pname').oninput = queueAutosave;
 listBk(); listSp();
 var chosen = false, z = 1;
 var ARD = ['set digital pin 13 to HIGH', 'set digital pin 13 to LOW', 'read digital pin 2', 'set PWM pin 9 to 128', 'read analog pin 0', 'set servo pin 9 to 90', 'play tone on pin 8 for 1 seconds', 'if digital pin 2 is HIGH then', 'end'], ESP = ['connect to Wi-Fi', 'set GPIO 2 to HIGH', 'set GPIO 2 to LOW', 'read touch pin 4', 'read analog pin 34', 'set servo pin 18 to 90', 'send data to cloud', 'if Wi-Fi connected then', 'end'], MB = ['show icon happy', 'show text Hello', 'clear display', 'read light level', 'read temperature', 'if button A pressed then', 'if button B pressed then', 'end'], QK = ['show emotion happy', 'move forward at speed 50', 'move backward at speed 50', 'stop robot', 'rotate robot left 90 degrees', 'read distance sensor', 'if obstacle detected then', 'end'], WZ = ['drive forward at speed 50', 'drive backward at speed 50', 'stop robot', 'rotate robot right 90 degrees', 'read line sensor', 'if obstacle detected then', 'end'], EV = ['set digital pin 13 to HIGH', 'set digital pin 13 to LOW', 'set servo pin 9 to 90', 'read potentiometer', 'read analog pin 0', 'show text on display Hello', 'if button pressed then', 'end'], TW = ['show text on screen Hello', 'read battery level', 'vibrate for 1 seconds', 'set backlight to 100', 'if touch detected then', 'end'], LG = ['run motor A forward at speed 50', 'stop motor A', 'read color sensor', 'read distance sensor', 'play sound beep', 'if touch sensor pressed then', 'end'], TEC = ['set LED on', 'set LED off', 'read light level', 'if button pressed then', 'end'];
@@ -386,6 +437,11 @@ function listSp() { var r = $('sprl'); r.innerHTML = ''; SP.forEach(function (o,
 var tn = { tB: '🧩 Blocks', tP: '🐍 Python', tC: '🖌 Costumes', tS: '🔊 Sounds' }; Object.keys(tn).forEach(function (k) { $(k).textContent = tn[k] });
 $('go').textContent = '⚑'; $('go').title = 'Green flag'; $('stop').textContent = ''; $('stop').title = 'Stop'; $('pymode').style.display = 'none';
 document.querySelector('.tabs').appendChild(document.querySelector('.run'));
+// This toolbar lives outside header, so it needs its own delegated actions.
+document.querySelector('.run').addEventListener('click', function (e) {
+  var button = e.target.closest('[data-a]');
+  if (button) act(button.getAttribute('data-a'), button);
+});
 $('cnBtn').insertAdjacentHTML('afterend', '<span class=cst id=cst></span>');
 document.querySelector('header').insertAdjacentHTML('beforeend', '<div class=hr><button class=hi id=hTr title=Achievements>🏆</button><button class=hi id=hSet title=Settings>⚙</button><button class=hi id=hLang title=Language>🌐 ▾</button><button class=sign id=hSign>🐻 Sign In</button></div>');
 setInterval(function () { $('cst').textContent = '🔌 ' + (chosen ? board : 'No board selected') + ' · ' + (wr ? 'USB connected' : bleChar ? 'Bluetooth connected' : 'not connected'); var b = $('bst'); if (b) b.textContent = connStatus() }, 1000);
@@ -428,7 +484,20 @@ function fImg(el) { x64.drawImage(el, 0, 0, 64, 48); var d = x64.getImageData(0,
 function knn(f, S, skip) { var r = []; S.forEach(function (s, i) { if (i === skip) return; var d = 0; for (var j = 0; j < f.length; j++) { var e = f[j] - s.f[j]; d += e * e } r.push([d, s.l]) }); r.sort(function (a, b) { return a[0] - b[0] }); var k = r.slice(0, 3), v = {}; k.forEach(function (e) { v[e[1]] = (v[e[1]] || 0) + 1 }); return Object.keys(v).map(function (l) { return [l, v[l] / k.length] }).sort(function (a, b) { return b[1] - a[1] }) }
 function nbTrain(C) { var V = {}, cl = [], N = 0; C.forEach(function (c) { var cnt = {}, t = 0; c.s.forEach(function (s) { words(s).forEach(function (w) { cnt[w] = (cnt[w] || 0) + 1; t++; V[w] = 1 }) }); N += c.s.length; cl.push({ n: c.n, cnt: cnt, t: t, m: c.s.length }) }); return { cl: cl, V: Object.keys(V).length || 1, N: N } }
 function nbPred(M, s) { var w = words(s), L = M.cl.map(function (c) { var lp = Math.log(c.m / M.N); w.forEach(function (x) { lp += Math.log(((c.cnt[x] || 0) + 1) / (c.t + M.V)) }); return lp }), mx = Math.max.apply(null, L), E = L.map(function (v) { return Math.exp(v - mx) }), Z = E.reduce(function (a, b) { return a + b }, 0); return M.cl.map(function (c, i) { return [c.n, E[i] / Z] }).sort(function (a, b) { return b[1] - a[1] }) }
-function parseNum(t, reg) { var R = []; t.split('\n').forEach(function (l) { var p = l.split(',').map(function (s) { return s.trim() }).filter(function (s) { return s !== '' }); if (p.length < 2) return; var y = p.pop(), f = p.map(parseFloat); if (f.some(isNaN)) return; R.push({ f: f, y: reg ? parseFloat(y) : y }) }); return R.filter(function (r) { return !reg || !isNaN(r.y) }) }
+function parseNum(text, reg) {
+  var rows = [], dimension = null;
+  text.split('\n').forEach(function (line, index) {
+    if (!line.trim()) return;
+    var parts = line.split(',').map(function (part) { return part.trim() });
+    if (parts.length < 2 || parts.some(function (part) { return part === '' })) throw new Error('Row ' + (index + 1) + ': provide features and an answer separated by commas.');
+    var answer = parts.pop(), features = parts.map(Number);
+    if (features.some(function (n) { return !Number.isFinite(n) }) || (reg && !Number.isFinite(Number(answer)))) throw new Error('Row ' + (index + 1) + ': numeric values must be finite numbers.');
+    if (dimension === null) dimension = features.length;
+    if (features.length !== dimension) throw new Error('Every row must have the same number of features.');
+    rows.push({ f: features, y: reg ? Number(answer) : answer });
+  });
+  return rows;
+}
 function stats(R) { var d = R[0].f.length, n = R.length, mu = [], sd = []; for (var j = 0; j < d; j++) { var m = 0; R.forEach(function (r) { m += r.f[j] }); m /= n; var v = 0; R.forEach(function (r) { v += Math.pow(r.f[j] - m, 2) }); mu.push(m); sd.push(Math.sqrt(v / n) || 1) } return { mu: mu, sd: sd } }
 function fitLin(R) { var n = R.length, st = stats(R), d = st.mu.length, w = new Array(d + 1).fill(0); for (var it = 0; it < 4000; it++) { var g = new Array(d + 1).fill(0); R.forEach(function (r) { var p = w[d]; for (var j = 0; j < d; j++)p += w[j] * (r.f[j] - st.mu[j]) / st.sd[j]; var e = p - r.y; for (var j = 0; j < d; j++)g[j] += e * (r.f[j] - st.mu[j]) / st.sd[j]; g[d] += e }); for (var j = 0; j <= d; j++)w[j] -= .05 * g[j] / n } return { w: w, mu: st.mu, sd: st.sd } }
 function linPred(M, f) { var d = M.mu.length, p = M.w[d]; for (var j = 0; j < d; j++)p += M.w[j] * (f[j] - M.mu[j]) / M.sd[j]; return p }
@@ -464,7 +533,7 @@ function mlTrain() {
   var k = MK, o = $('mres'), ok = 0, msg = '';
   if (k === 'image' || k === 'audio') { var S = []; MLM[k].c.forEach(function (c) { c.s.forEach(function (f) { S.push({ f: f, l: c.n }) }) }); var cn = {}; S.forEach(function (s) { cn[s.l] = 1 }); if (S.length < 2 || Object.keys(cn).length < 2) { o.textContent = 'Add samples to at least 2 classes first.'; return } TR[k] = { S: S }; S.forEach(function (s, i) { if (knn(s.f, S, i)[0][0] === s.l) ok++ }); msg = 'Trained on ' + S.length + ' samples. Leave-one-out accuracy: ' + Math.round(ok / S.length * 100) + '%.' }
   else if (k === 'text') { var C = MLM.text.c.filter(function (c) { return c.s.length }); if (C.length < 2) { o.textContent = 'Add examples to at least 2 classes first.'; return } TR.text = nbTrain(C); var n = 0; C.forEach(function (c) { c.s.forEach(function (s) { n++; if (nbPred(TR.text, s)[0][0] === c.n) ok++ }) }); msg = 'Trained on ' + n + ' examples. Training accuracy: ' + Math.round(ok / n * 100) + '%.' }
-  else if (k === 'num') { var reg = MLM.num.mode === 'reg', R = parseNum(MLM.num.txt, reg); if (R.length < 3) { o.textContent = 'Add at least 3 valid rows first.'; return } if (reg) { var M = fitLin(R), se = 0, sm = 0, my = 0; R.forEach(function (r) { my += r.y }); my /= R.length; R.forEach(function (r) { se += Math.pow(linPred(M, r.f) - r.y, 2); sm += Math.pow(r.y - my, 2) }); TR.num = { reg: 1, M: M }; msg = 'Linear regression fitted on ' + R.length + ' rows. R squared: ' + (sm ? (1 - se / sm).toFixed(3) : 'n/a') + '.' } else { var st = stats(R), S2 = R.map(function (r) { return { f: r.f.map(function (v, j) { return (v - st.mu[j]) / st.sd[j] }), l: r.y } }); S2.forEach(function (s, i) { if (knn(s.f, S2, i)[0][0] === s.l) ok++ }); TR.num = { reg: 0, st: st, S: S2 }; msg = 'Trained on ' + R.length + ' rows. Leave-one-out accuracy: ' + Math.round(ok / R.length * 100) + '%.' } }
+  else if (k === 'num') { var reg = MLM.num.mode === 'reg', R; try { R = parseNum(MLM.num.txt, reg) } catch (error) { delete TR.num; o.textContent = error.message; return } if (R.length < 3) { o.textContent = 'Add at least 3 valid rows first.'; return } if (reg) { var M = fitLin(R), se = 0, sm = 0, my = 0; R.forEach(function (r) { my += r.y }); my /= R.length; R.forEach(function (r) { se += Math.pow(linPred(M, r.f) - r.y, 2); sm += Math.pow(r.y - my, 2) }); TR.num = { reg: 1, M: M }; msg = 'Linear regression fitted on ' + R.length + ' rows. R squared: ' + (sm ? (1 - se / sm).toFixed(3) : 'n/a') + '.' } else { var st = stats(R), S2 = R.map(function (r) { return { f: r.f.map(function (v, j) { return (v - st.mu[j]) / st.sd[j] }), l: r.y } }); S2.forEach(function (s, i) { if (knn(s.f, S2, i)[0][0] === s.l) ok++ }); TR.num = { reg: 0, st: st, S: S2 }; msg = 'Trained on ' + R.length + ' rows. Leave-one-out accuracy: ' + Math.round(ok / R.length * 100) + '%.' } }
   o.textContent = msg + ' Press Use in blocks to add it to your project.'; exportBlocks()
 }
 function mlPredict() {
@@ -474,7 +543,20 @@ function mlPredict() {
   else if (k === 'audio') recAudio().then(function (f) { showP(knn(f, TR.audio.S)) }).catch(function () { $('mout').textContent = 'Microphone blocked or unavailable.' });
   else numPredict($('mni').value, function (P, v) { if (v !== null) { lastLabel = String(v); $('mout').innerHTML = '<h3>Predicted value: ' + v + '</h3>' } else showP(P) })
 }
-function numPredict(txt, cb) { var f = (txt.match(/-?\d+\.?\d*/g) || []).map(parseFloat), T = TR.num; if (!T || !f.length) return cb([['?', 1]], null); if (T.reg) { var v = Math.round(linPred(T.M, f) * 1000) / 1000; lastLabel = String(v); return cb(null, v) } cb(knn(f.map(function (x, j) { return (x - T.st.mu[j]) / T.st.sd[j] }), T.S), null) }
+function numPredict(text, cb) {
+  var T = TR.num;
+  if (!T) { if ($('mout')) $('mout').textContent = 'Train the model first.'; return }
+  var parts = text.split(',').map(function (part) { return part.trim() }), f = parts.map(Number);
+  var dimension = T.reg ? T.M.mu.length : T.st.mu.length;
+  if (parts.some(function (part) { return part === '' }) || f.some(function (n) { return !Number.isFinite(n) }) || f.length !== dimension) {
+    var message = 'Enter exactly ' + dimension + ' finite numeric feature' + (dimension === 1 ? '' : 's') + ', separated by commas.';
+    if ($('mout')) $('mout').textContent = message;
+    aiMsg(message);
+    return;
+  }
+  if (T.reg) { var v = Math.round(linPred(T.M, f) * 1000) / 1000; lastLabel = String(v); return cb(null, v) }
+  cb(knn(f.map(function (x, j) { return (x - T.st.mu[j]) / T.st.sd[j] }), T.S), null);
+}
 function reg(t, p, r, q) { if (!findX(t)) X.push({ c: '', t: t, k: K(t), p: p, r: r, q: q }) }
 function exportBlocks() {
   var L = [], cl = []; function add2(n) { if (cl.indexOf(n) < 0) cl.push(n) }
@@ -497,7 +579,10 @@ document.querySelector('.logo').onclick = landing;
 show('Motion'); landing();
 showCos(); upd();
 stack.oninput = function () { if (pyOn) render() };
+stack.addEventListener('input', queueAutosave);
+window.addEventListener('beforeunload', saveRecovery);
 document.getElementById('pymode').onclick = function () { pyOn = !pyOn; this.textContent = pyOn ? 'Blocks' : 'Python'; stack.hidden = pyOn; document.getElementById('py').hidden = !pyOn; hint() };
 document.getElementById("go").onclick = go;
-document.getElementById("stop").onclick = function () { stop(); camOff(); x = 0; y = 0; dir = 90; sp.style.visibility = "visible"; sp.textContent = "🐱"; upd() };
+document.getElementById("stop").onclick = function () { stop(); camOff(); x = 0; y = 0; dir = 90; sp.style.visibility = "visible"; showCos(); upd() };
 show("Motion"); upd();
+restoreRecovery();

@@ -1,0 +1,116 @@
+[
+  {
+    "name": "NumPy installation",
+    "passed": true,
+    "evidence": "Project packages\nnumpy\n2.4.6\nRemove\n1 distributions currently loaded, including runtime dependencies."
+  },
+  {
+    "name": "NumPy import",
+    "passed": true
+  },
+  {
+    "name": "Interactive input",
+    "passed": true
+  },
+  {
+    "name": "Extension example insertion",
+    "passed": true
+  },
+  {
+    "name": "Pen script execution",
+    "passed": true
+  },
+  {
+    "name": "PyPI emoji installation",
+    "passed": true
+  },
+  {
+    "name": "Charts extension dependencies",
+    "passed": true
+  },
+  {
+    "name": "Matplotlib rendering",
+    "passed": true
+  },
+  {
+    "name": "Notebook shared state",
+    "passed": true
+  },
+  {
+    "name": "Notebook export",
+    "passed": true,
+    "evidence": "Jupyter .ipynb download emitted"
+  },
+  {
+    "name": "Custom blocks and repeat",
+    "passed": true
+  },
+  {
+    "name": "Variables and lists",
+    "passed": true
+  },
+  {
+    "name": "Key and broadcast events",
+    "passed": true
+  },
+  {
+    "name": "Scene restores both sprites",
+    "passed": true
+  },
+  {
+    "name": "Scene restores position",
+    "passed": true
+  },
+  {
+    "name": "Scene restores backdrop",
+    "passed": true
+  },
+  {
+    "name": "Extension settings survive reload",
+    "passed": true
+  },
+  {
+    "name": "Sprite-click event",
+    "passed": true
+  },
+  {
+    "name": "Custom block palette restores definitions",
+    "passed": true
+  },
+  {
+    "name": "Notebook cells survive reload",
+    "passed": true
+  },
+  {
+    "name": "Notebook import and run all",
+    "passed": true
+  },
+  {
+    "name": "Notebook duplicate",
+    "passed": true
+  },
+  {
+    "name": "Notebook delete and type toggle",
+    "passed": true
+  },
+  {
+    "name": "Custom extension import and execution",
+    "passed": true
+  },
+  {
+    "name": "Pure PyPI import after kernel reset",
+    "passed": true
+  },
+  {
+    "name": "Invalid package specification rejected",
+    "passed": true
+  },
+  {
+    "name": "Package inventory refresh",
+    "passed": true
+  },
+  {
+    "name": "Notebook Stop cancels worker",
+    "passed": true
+  }
+]

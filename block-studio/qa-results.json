@@ -1,0 +1,2040 @@
+[
+  {
+    "name": "Python New file (original)",
+    "status": "FIXED",
+    "evidence": "Click throws: prompt() is not supported in the in-app browser. Replaced native prompt/confirm with app dialogs.",
+    "originalStatus": "FAIL",
+    "resolvedBy": "Python New file / Create"
+  },
+  {
+    "name": "Python New file / Create",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python File actions / Rename",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python File actions / Delete",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python dialogs / Cancel",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Comment button",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Font larger",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Font smaller",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Find next",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Close find",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python pf-api help",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python pf-help help",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Log tab",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Terminal tab",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Run",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python REPL / Enter",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python REPL toggle off",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Clear terminal",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Example programs",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Run All",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Download active file",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Export project",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Import / replace .py file",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Import project JSON",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Stop button",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Toolbar Upload Firmware (original)",
+    "status": "FIXED",
+    "evidence": "No dialog: toolbar moved outside delegated header listener.",
+    "originalStatus": "FAIL",
+    "resolvedBy": "Toolbar Upload Firmware retest"
+  },
+  {
+    "name": "Python File > New",
+    "status": "PASS",
+    "evidence": "Reset to Stage.py and Sprite1.py with starter content; original assertion also counted the Sprite API button."
+  },
+  {
+    "name": "Toolbar Upload Firmware retest",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python toolbar Undo",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python toolbar Redo",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Achievements",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Settings / Light",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Settings / Dark",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Settings / Auto",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Language / English",
+    "status": "LIMITED",
+    "evidence": "Selection changes label only; dialog explicitly says translation is unavailable."
+  },
+  {
+    "name": "Language / Hindi",
+    "status": "LIMITED",
+    "evidence": "Selection changes label only; dialog explicitly says translation is unavailable."
+  },
+  {
+    "name": "Language / Urdu",
+    "status": "LIMITED",
+    "evidence": "Selection changes label only; dialog explicitly says translation is unavailable."
+  },
+  {
+    "name": "Language / Spanish",
+    "status": "LIMITED",
+    "evidence": "Selection changes label only; dialog explicitly says translation is unavailable."
+  },
+  {
+    "name": "Language / French",
+    "status": "LIMITED",
+    "evidence": "Selection changes label only; dialog explicitly says translation is unavailable."
+  },
+  {
+    "name": "Language / Chinese",
+    "status": "LIMITED",
+    "evidence": "Selection changes label only; dialog explicitly says translation is unavailable."
+  },
+  {
+    "name": "Sign In / Continue",
+    "status": "LIMITED",
+    "evidence": "Local display name becomes QA Tester; no real account authentication."
+  },
+  {
+    "name": "Board / 🧩evive",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Board / 🔷Quarky",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Board / 🤖Wizbot",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Board / 🟦Arduino Uno",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Board / 🟦Arduino Mega",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Board / 🟦Arduino Nano",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Board / 📶ESP32",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Board / ⌚T-Watch",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Board / 🔴micro:bit",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Board / 🧪TECbits",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Board / 🧱LEGO EV3",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Board / 🧱LEGO BOOST",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Mode / Upload without device",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Connect / Disconnect while offline",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Mode / Stage",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Connect via USB",
+    "status": "BLOCKED",
+    "evidence": "No physical USB board supplied; browser/device authorization cannot be completed as a hardware test. UI feedback: Hardware: disconnected"
+  },
+  {
+    "name": "Connect via Bluetooth",
+    "status": "BLOCKED",
+    "evidence": "No Bluetooth board supplied. UI feedback: Hardware: disconnected"
+  },
+  {
+    "name": "File / Share / Copy link",
+    "status": "LIMITED",
+    "evidence": "Copies page URL only, not project data; QR codes and project publishing are not implemented."
+  },
+  {
+    "name": "Block import / malformed JSON",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Block import / pasted project",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Blocks Green flag / movement",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Blocks Stop / reset",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Blocks File / Save",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Blocks Save / Copy",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Blocks Save / Download",
+    "status": "PASS",
+    "evidence": "Download event emitted. Exported JSON verified in save field."
+  },
+  {
+    "name": "Blocks File / New",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Blocks Edit / Restore",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Blocks toolbar Undo",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Blocks toolbar Redo",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Learn / Getting Started",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Learn / Tutorials",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Learn / Examples",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Learn / Help",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Example / Walk and say hello",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Example / Bounce forever",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Example / Follow my face",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Example / Blink an LED",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Example / Greet when I say hello",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Stage size / Small stage (Blocks)",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Stage size / Normal stage (Blocks)",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Stage size / Large stage (Blocks)",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Stage full screen",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Stage exit full screen",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Hide sprite",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Show sprite",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Stage snapshot",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Stage snapshot Download (original)",
+    "status": "FIXED",
+    "evidence": "Click did not emit a download event within 10 seconds (data URL download).",
+    "originalStatus": "FAIL",
+    "resolvedBy": "Snapshot Download retest"
+  },
+  {
+    "name": "Stage snapshot Add as costume",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python stage resizing (original)",
+    "status": "FIXED",
+    "evidence": false,
+    "originalStatus": "FAIL",
+    "resolvedBy": "Python stage resizing retest"
+  },
+  {
+    "name": "Costumes Duplicate",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Costumes Delete",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Costumes cflipH",
+    "status": "PASS",
+    "evidence": "Subsequently verified visually; see Costumes Horizontal flip visual"
+  },
+  {
+    "name": "Costumes cflipV",
+    "status": "PASS",
+    "evidence": "Subsequently verified visually; see Costumes Vertical flip visual"
+  },
+  {
+    "name": "Costumes cclip",
+    "status": "PASS",
+    "evidence": "Subsequently verified visually; see Costumes Copy and Paste visual"
+  },
+  {
+    "name": "Costumes cpaste",
+    "status": "PASS",
+    "evidence": "Subsequently verified visually; see Costumes Copy and Paste visual"
+  },
+  {
+    "name": "Costumes cclear",
+    "status": "PASS",
+    "evidence": "Subsequently verified visually; see Costumes Clear visual"
+  },
+  {
+    "name": "Costumes cundo",
+    "status": "PASS",
+    "evidence": "Subsequently verified visually; see Costumes Undo visual"
+  },
+  {
+    "name": "Costumes credo",
+    "status": "PASS",
+    "evidence": "Subsequently verified visually; see Costumes Redo visual"
+  },
+  {
+    "name": "Costumes zoom zin",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Costumes zoom zout",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Costumes zoom zrst",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Costumes tool / brush",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Costumes tool / eraser",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Costumes tool / line",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Costumes tool / circle",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Costumes tool / rect",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Costumes tool / fill",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Costumes tool / text",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Costumes Text drawing",
+    "status": "PASS",
+    "evidence": "Canvas visibly rendered Hello at the clicked position."
+  },
+  {
+    "name": "Costumes Brush drawing",
+    "status": "PASS",
+    "evidence": "Black stroke is visible on the canvas."
+  },
+  {
+    "name": "Costumes Line drawing",
+    "status": "PASS",
+    "evidence": "Shape visibly rendered in canvas screenshot."
+  },
+  {
+    "name": "Costumes Circle drawing",
+    "status": "PASS",
+    "evidence": "Shape visibly rendered in canvas screenshot."
+  },
+  {
+    "name": "Costumes Rectangle drawing",
+    "status": "PASS",
+    "evidence": "Shape visibly rendered in canvas screenshot."
+  },
+  {
+    "name": "Costumes Bucket fill drawing",
+    "status": "PASS",
+    "evidence": "Purple fill visibly covers transparent background."
+  },
+  {
+    "name": "Costumes Eraser drawing",
+    "status": "PASS",
+    "evidence": "Checkerboard erasure stroke visible."
+  },
+  {
+    "name": "Costumes Horizontal flip visual",
+    "status": "PASS",
+    "evidence": "Hello and shapes mirrored horizontally."
+  },
+  {
+    "name": "Costumes Vertical flip visual",
+    "status": "PASS",
+    "evidence": "Shapes and text inverted vertically."
+  },
+  {
+    "name": "Costumes Clear visual",
+    "status": "PASS",
+    "evidence": "Canvas is fully transparent after Clear."
+  },
+  {
+    "name": "Costumes Undo visual",
+    "status": "PASS",
+    "evidence": "Undo restored the artwork after Clear."
+  },
+  {
+    "name": "Costumes Redo visual",
+    "status": "PASS",
+    "evidence": "Redo cleared the artwork again."
+  },
+  {
+    "name": "Costumes Copy and Paste visual",
+    "status": "PASS",
+    "evidence": "Paste restored copied artwork with its expected offset."
+  },
+  {
+    "name": "Costumes Rename",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sound Play / Meow",
+    "status": "UI_ONLY",
+    "evidence": "Play handler completed; audible output is not measured by this browser tool."
+  },
+  {
+    "name": "Sound Play / Pop",
+    "status": "UI_ONLY",
+    "evidence": "Play handler completed; audible output is not measured by this browser tool."
+  },
+  {
+    "name": "Sound Play / Chirp",
+    "status": "UI_ONLY",
+    "evidence": "Play handler completed; audible output is not measured by this browser tool."
+  },
+  {
+    "name": "Sound Play / Drum",
+    "status": "UI_ONLY",
+    "evidence": "Play handler completed; audible output is not measured by this browser tool."
+  },
+  {
+    "name": "Sound Play / Laser",
+    "status": "UI_ONLY",
+    "evidence": "Play handler completed; audible output is not measured by this browser tool."
+  },
+  {
+    "name": "Sounds Stop all",
+    "status": "UI_ONLY",
+    "evidence": "Stop handler completed; no audio assertion available."
+  },
+  {
+    "name": "Sounds Delete",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sounds Undo deletion",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sounds Redo deletion",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sounds Record",
+    "status": "BLOCKED",
+    "evidence": "Microphone permission and a recording source were not provided; recording is not claimed tested."
+  },
+  {
+    "name": "Backpack / + Scripts",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backpack / + Costume",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backpack restore scripts",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backpack restore costume as sprite",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite menu / Choose from Backpack",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library category / All",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library category / Animals",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library category / Fantasy",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library category / People",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library category / Food",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library category / Transportation",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library category / Things",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library search",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / 🐱Cat",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / 🐶Dog",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / 🐻Bear",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / 🐼Panda",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / 🦊Fox",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / 🦁Lion",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / 🐸Frog",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / 🐧Penguin",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / 🐉Dragon",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / 🦄Unicorn",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / 🧙Wizard",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / 👻Ghost",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / 🤖Robot",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / 👽Alien",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / 🧑‍🚀Astronaut",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / 👧Girl",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / 👦Boy",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / 🍎Apple",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / 🍕Pizza",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / 🎂Cake",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / 🚗Car",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / 🚀Rocket",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / ✈️Plane",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / ⛵Boat",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / ⚽Ball",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / ⭐Star",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / ❤️Heart",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite library asset / 🌳Tree",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Stop preserves selected sprite appearance (original)",
+    "status": "FIXED",
+    "evidence": false,
+    "originalStatus": "FAIL",
+    "resolvedBy": "Stop preserves sprite appearance retest"
+  },
+  {
+    "name": "Delete selected sprite",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite menu / Surprise",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite menu / Paint",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backdrop library category / All",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backdrop library category / Outdoors",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backdrop library category / Space",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backdrop library category / Indoors",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backdrop library category / Patterns",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backdrop library category / Sports",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backdrop library category / Nature",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backdrop library asset / Blue Sky",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backdrop library asset / Sunset",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backdrop library asset / Grass",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backdrop library asset / Beach",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backdrop library asset / Night Sky",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backdrop library asset / Galaxy",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backdrop library asset / Moon",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backdrop library asset / Classroom",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backdrop library asset / Bedroom",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backdrop library asset / Stripes",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backdrop library asset / Grid",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backdrop library asset / Sports Field",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backdrop library asset / Court",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backdrop library asset / Underwater",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backdrop library asset / Forest",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backdrop library asset / Desert",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backdrop menu / Surprise",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backdrop menu / Paint / Use colour",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite menu / Upload Sprite",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Backdrop menu / Upload Backdrop",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite numeric properties",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sprite rename",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python stage resizing retest",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Snapshot Download retest",
+    "status": "PASS",
+    "evidence": "Blob PNG download event emitted."
+  },
+  {
+    "name": "Python Enter auto-indent",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Shift+Tab unindent",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Tab indent",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python shared Sprite instances (original)",
+    "status": "FIXED",
+    "evidence": false,
+    "originalStatus": "FAIL",
+    "resolvedBy": "Python shared Sprite instances retest"
+  },
+  {
+    "name": "All base palette insertions",
+    "status": "PASS",
+    "evidence": {
+      "count": 46,
+      "buttons": [
+        "move 50 steps",
+        "turn right 15 degrees",
+        "go to x: 0 y: 0",
+        "go to random position",
+        "change x by 40",
+        "change y by 40",
+        "bounce if on edge",
+        "say Hello! for 2 seconds",
+        "think Hmm...",
+        "next costume",
+        "switch backdrop to Backdrop1",
+        "change size by 10",
+        "show",
+        "hide",
+        "play sound Meow until done",
+        "start sound Pop",
+        "play sound Chirp until done",
+        "start sound Drum",
+        "start sound Laser",
+        "stop all sounds",
+        "change volume by -10",
+        "when green flag clicked",
+        "when this sprite clicked",
+        "when key space pressed",
+        "broadcast message1",
+        "wait 1 seconds",
+        "repeat 10",
+        "forever",
+        "if x > 0 then",
+        "if touching edge then",
+        "end",
+        "stop all",
+        "touching mouse-pointer?",
+        "ask What's your name? and wait",
+        "key space pressed?",
+        "timer",
+        "reset timer",
+        "pick random 1 to 10",
+        "join hello world",
+        "() + ()",
+        "() = ()",
+        "set my variable to 0",
+        "change my variable by 1",
+        "show variable",
+        "make a list",
+        "Make a Block"
+      ],
+      "note": "Every button clicked in the preceding completed browser batch."
+    }
+  },
+  {
+    "name": "Extension palette / + Image Classification",
+    "status": "PASS",
+    "evidence": {
+      "inserted": 6,
+      "buttons": [
+        "add camera sample to class 1",
+        "clear dataset",
+        "train model",
+        "classify camera image",
+        "if image class is 1 then",
+        "end"
+      ],
+      "note": "Click batch completed before browser test timeout; confirmed every resulting block in script DOM."
+    }
+  },
+  {
+    "name": "Extension palette / + Dataset Collection",
+    "status": "PASS",
+    "evidence": {
+      "inserted": 6,
+      "buttons": [
+        "add camera sample to class 1",
+        "clear dataset",
+        "train model",
+        "classify camera image",
+        "if image class is 1 then",
+        "end"
+      ],
+      "note": "Click batch completed before browser test timeout; confirmed every resulting block in script DOM."
+    }
+  },
+  {
+    "name": "Extension palette / + AI Model Training",
+    "status": "PASS",
+    "evidence": {
+      "inserted": 6,
+      "buttons": [
+        "add camera sample to class 1",
+        "clear dataset",
+        "train model",
+        "classify camera image",
+        "if image class is 1 then",
+        "end"
+      ],
+      "note": "Click batch completed before browser test timeout; confirmed every resulting block in script DOM."
+    }
+  },
+  {
+    "name": "Extension palette / + Face Recognition",
+    "status": "PASS",
+    "evidence": {
+      "inserted": 3,
+      "buttons": [
+        "remember face as person 1",
+        "if recognized person is 1 then",
+        "end"
+      ],
+      "note": "Click batch completed before browser test timeout; confirmed every resulting block in script DOM."
+    }
+  },
+  {
+    "name": "Extension palette / + Pose Detection",
+    "status": "PASS",
+    "evidence": {
+      "inserted": 5,
+      "buttons": [
+        "if body is left of center then",
+        "if body is right of center then",
+        "if body is above of center then",
+        "if body is below of center then",
+        "end"
+      ],
+      "note": "Click batch completed before browser test timeout; confirmed every resulting block in script DOM."
+    }
+  },
+  {
+    "name": "Extension palette / + Hand Gesture",
+    "status": "PASS",
+    "evidence": {
+      "inserted": 5,
+      "buttons": [
+        "if swipe left detected then",
+        "if swipe right detected then",
+        "if swipe up detected then",
+        "if swipe down detected then",
+        "end"
+      ],
+      "note": "Click batch completed before browser test timeout; confirmed every resulting block in script DOM."
+    }
+  },
+  {
+    "name": "Extension palette / + Body Tracking",
+    "status": "PASS",
+    "evidence": {
+      "inserted": 3,
+      "buttons": [
+        "follow body motion",
+        "if body motion detected then",
+        "end"
+      ],
+      "note": "Click batch completed before browser test timeout; confirmed every resulting block in script DOM."
+    }
+  },
+  {
+    "name": "Extension palette / + OCR",
+    "status": "PASS",
+    "evidence": {
+      "inserted": 2,
+      "buttons": [
+        "read text from camera",
+        "show recognized text"
+      ],
+      "note": "Click batch completed before browser test timeout; confirmed every resulting block in script DOM."
+    }
+  },
+  {
+    "name": "Extension palette / + Natural Language",
+    "status": "PASS",
+    "evidence": {
+      "inserted": 5,
+      "buttons": [
+        "if text is positive then",
+        "if text is negative then",
+        "if text is a question then",
+        "show text word count",
+        "end"
+      ],
+      "note": "Click batch completed before browser test timeout; confirmed every resulting block in script DOM."
+    }
+  },
+  {
+    "name": "Extension palette / + Sensors",
+    "status": "PASS",
+    "evidence": {
+      "inserted": 12,
+      "buttons": [
+        "LED on",
+        "LED off",
+        "blink LED 3 times",
+        "set motor speed to 50",
+        "stop motor",
+        "set servo angle to 90",
+        "if button pressed then",
+        "if temperature > 30 then",
+        "if light level < 40 then",
+        "if distance < 20 then",
+        "show temperature",
+        "end"
+      ],
+      "note": "Click batch completed before browser test timeout; confirmed every resulting block in script DOM."
+    }
+  },
+  {
+    "name": "Extension palette / + Motors & Servos",
+    "status": "PASS",
+    "evidence": {
+      "inserted": 12,
+      "buttons": [
+        "LED on",
+        "LED off",
+        "blink LED 3 times",
+        "set motor speed to 50",
+        "stop motor",
+        "set servo angle to 90",
+        "if button pressed then",
+        "if temperature > 30 then",
+        "if light level < 40 then",
+        "if distance < 20 then",
+        "show temperature",
+        "end"
+      ],
+      "note": "Click batch completed before browser test timeout; confirmed every resulting block in script DOM."
+    }
+  },
+  {
+    "name": "Extension palette / + Bluetooth",
+    "status": "PASS",
+    "evidence": {
+      "inserted": 3,
+      "buttons": [
+        "send hello over Bluetooth",
+        "if Bluetooth connected then",
+        "end"
+      ],
+      "note": "Click batch completed before browser test timeout; confirmed every resulting block in script DOM."
+    }
+  },
+  {
+    "name": "Extension palette / + IoT",
+    "status": "PASS",
+    "evidence": {
+      "inserted": 2,
+      "buttons": [
+        "publish sensors to cloud",
+        "show cloud temperature"
+      ],
+      "note": "Click batch completed before browser test timeout; confirmed every resulting block in script DOM."
+    }
+  },
+  {
+    "name": "Extension palette / + Face Detection",
+    "status": "PASS",
+    "evidence": {
+      "inserted": 6,
+      "buttons": [
+        "camera on",
+        "camera off",
+        "if face detected then",
+        "end",
+        "glide to face position",
+        "show number of faces"
+      ],
+      "note": "Click batch completed before browser test timeout; confirmed every resulting block in script DOM."
+    }
+  },
+  {
+    "name": "Extension palette / + Speech Recognition",
+    "status": "PASS",
+    "evidence": {
+      "inserted": 8,
+      "buttons": [
+        "listen and wait",
+        "show what was heard",
+        "if heard hello then",
+        "if heard yes then",
+        "if heard no then",
+        "if heard go then",
+        "if heard stop then",
+        "end"
+      ],
+      "note": "Click batch completed before browser test timeout; confirmed every resulting block in script DOM."
+    }
+  },
+  {
+    "name": "Extension palette / + Text to Speech",
+    "status": "PASS",
+    "evidence": {
+      "inserted": 4,
+      "buttons": [
+        "speak Hello there",
+        "speak I can see you",
+        "speak Goodbye",
+        "speak the typed text"
+      ],
+      "note": "Click batch completed before browser test timeout; confirmed every resulting block in script DOM."
+    }
+  },
+  {
+    "name": "Extension palette / + Object Detection",
+    "status": "PASS",
+    "evidence": {
+      "inserted": 6,
+      "buttons": [
+        "find red object",
+        "find green object",
+        "find blue object",
+        "if object found then",
+        "glide to object position",
+        "end"
+      ],
+      "note": "Click batch completed before browser test timeout; confirmed every resulting block in script DOM."
+    }
+  },
+  {
+    "name": "Extension palette / + Machine Learning Environment",
+    "status": "PASS",
+    "evidence": {
+      "inserted": 6,
+      "buttons": [
+        "add camera sample to class 1",
+        "clear dataset",
+        "train model",
+        "classify camera image",
+        "if image class is 1 then",
+        "end"
+      ],
+      "note": "Click batch completed before browser test timeout; confirmed every resulting block in script DOM."
+    }
+  },
+  {
+    "name": "Extension palette / + Quarky",
+    "status": "PASS",
+    "evidence": {
+      "inserted": 12,
+      "buttons": [
+        "LED on",
+        "LED off",
+        "blink LED 3 times",
+        "set motor speed to 50",
+        "stop motor",
+        "set servo angle to 90",
+        "if button pressed then",
+        "if temperature > 30 then",
+        "if light level < 40 then",
+        "if distance < 20 then",
+        "show temperature",
+        "end"
+      ],
+      "note": "Click batch completed before browser test timeout; confirmed every resulting block in script DOM."
+    }
+  },
+  {
+    "name": "Extension palette / + Arduino Uno",
+    "status": "PASS",
+    "evidence": {
+      "inserted": 12,
+      "buttons": [
+        "LED on",
+        "LED off",
+        "blink LED 3 times",
+        "set motor speed to 50",
+        "stop motor",
+        "set servo angle to 90",
+        "if button pressed then",
+        "if temperature > 30 then",
+        "if light level < 40 then",
+        "if distance < 20 then",
+        "show temperature",
+        "end"
+      ],
+      "note": "Click batch completed before browser test timeout; confirmed every resulting block in script DOM."
+    }
+  },
+  {
+    "name": "Extension palette / + ESP32",
+    "status": "PASS",
+    "evidence": {
+      "inserted": 12,
+      "buttons": [
+        "LED on",
+        "LED off",
+        "blink LED 3 times",
+        "set motor speed to 50",
+        "stop motor",
+        "set servo angle to 90",
+        "if button pressed then",
+        "if temperature > 30 then",
+        "if light level < 40 then",
+        "if distance < 20 then",
+        "show temperature",
+        "end"
+      ],
+      "note": "Click batch completed before browser test timeout; confirmed every resulting block in script DOM."
+    }
+  },
+  {
+    "name": "Extension palette / + micro:bit",
+    "status": "PASS",
+    "evidence": {
+      "inserted": 12,
+      "buttons": [
+        "LED on",
+        "LED off",
+        "blink LED 3 times",
+        "set motor speed to 50",
+        "stop motor",
+        "set servo angle to 90",
+        "if button pressed then",
+        "if temperature > 30 then",
+        "if light level < 40 then",
+        "if distance < 20 then",
+        "show temperature",
+        "end"
+      ],
+      "note": "Click batch completed before browser test timeout; confirmed every resulting block in script DOM."
+    }
+  },
+  {
+    "name": "Extension palette / + Pen",
+    "status": "PASS",
+    "evidence": {
+      "inserted": 2,
+      "buttons": [
+        "Pen block 1",
+        "Pen block 2"
+      ],
+      "note": "Click batch completed before browser test timeout; confirmed every resulting block in script DOM."
+    }
+  },
+  {
+    "name": "Extension palette / + Music",
+    "status": "PASS",
+    "evidence": {
+      "inserted": 2,
+      "buttons": [
+        "Music block 1",
+        "Music block 2"
+      ],
+      "note": "Click batch completed before browser test timeout; confirmed every resulting block in script DOM."
+    }
+  },
+  {
+    "name": "Block search",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Block search result insertion",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Blocks workspace zoom / +",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Blocks workspace zoom / -",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Blocks workspace zoom / =",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Add Extension chooser",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Add Extension / choose",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Runtime feature gap / My Blocks custom definition",
+    "status": "LIMITED",
+    "evidence": "Source inspection and UI checks: palette insertion exists, but full execution/definition behavior is missing."
+  },
+  {
+    "name": "Runtime feature gap / Events click/key/broadcast",
+    "status": "LIMITED",
+    "evidence": "Source inspection and UI checks: palette insertion exists, but full execution/definition behavior is missing."
+  },
+  {
+    "name": "Runtime feature gap / Sensing ask/timer/reporters",
+    "status": "LIMITED",
+    "evidence": "Source inspection and UI checks: palette insertion exists, but full execution/definition behavior is missing."
+  },
+  {
+    "name": "Runtime feature gap / Operators arithmetic/text/reporters",
+    "status": "LIMITED",
+    "evidence": "Source inspection and UI checks: palette insertion exists, but full execution/definition behavior is missing."
+  },
+  {
+    "name": "Runtime feature gap / Variables and lists",
+    "status": "LIMITED",
+    "evidence": "Source inspection and UI checks: palette insertion exists, but full execution/definition behavior is missing."
+  },
+  {
+    "name": "Runtime feature gap / Pen and Music",
+    "status": "LIMITED",
+    "evidence": "Source inspection and UI checks: palette insertion exists, but full execution/definition behavior is missing."
+  },
+  {
+    "name": "Python shared Sprite instances retest",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "File / Open ML Environment",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "ML Image / no-data training validation",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "ML Image / untrained prediction guard",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "ML Add class",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "ML Delete class",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "ML Image / Rename classes",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "ML Image / Upload samples",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "ML Image / Train",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "ML Image / no-camera prediction guard",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "ML Image / camera sample guard",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "ML Image / Turn camera on and live prediction",
+    "status": "BLOCKED",
+    "evidence": "Camera capture permission was not provided. Live camera behavior remains unverified."
+  },
+  {
+    "name": "ML Image / Use in blocks",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "ML tab / obj",
+    "status": "LIMITED",
+    "evidence": "Explicit not-yet-implemented notice displayed."
+  },
+  {
+    "name": "ML tab / pose",
+    "status": "LIMITED",
+    "evidence": "Explicit not-yet-implemented notice displayed."
+  },
+  {
+    "name": "ML tab / hand",
+    "status": "LIMITED",
+    "evidence": "Explicit not-yet-implemented notice displayed."
+  },
+  {
+    "name": "ML tab / Audio",
+    "status": "BLOCKED",
+    "evidence": "Class UI opens; microphone training/prediction needs permission and audio input."
+  },
+  {
+    "name": "ML Text / Add examples",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "ML Text / Train",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "ML Text / Predict",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "ML Text / Use in blocks",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "ML Number / Classification Train",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "ML Number / Classification Predict",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "ML Number / Regression Train",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "ML Number / Regression Predict",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "ML Number / mismatched prediction dimensions (original)",
+    "status": "FIXED",
+    "evidence": "Two input features accepted for a one-feature model: Predicted value: 11",
+    "originalStatus": "FAIL",
+    "resolvedBy": "ML prediction dimension guard retest"
+  },
+  {
+    "name": "ML Number / inconsistent training dimensions (original)",
+    "status": "FIXED",
+    "evidence": "Linear regression fitted on 3 rows. R squared: NaN. Press Use in blocks to add it to your project.",
+    "originalStatus": "FAIL",
+    "resolvedBy": "ML inconsistent training dimensions retest"
+  },
+  {
+    "name": "ML inconsistent training dimensions retest",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "ML prediction dimension guard retest",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "ML regression after validation fix",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "ML Number / Use in blocks",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Blocks File / Load from computer",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Blocks imported project execution",
+    "status": "PASS",
+    "evidence": "Move 25 steps moved sprite to x=25."
+  },
+  {
+    "name": "Stop preserves sprite appearance retest",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Costume selection / 1 🐻Bear",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Firmware Upload simulation",
+    "status": "LIMITED",
+    "evidence": "Progress reaches Done. This is explicitly simulated, not real flashing."
+  },
+  {
+    "name": "Home header / Achievements",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Home header / Settings",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Home header / Language",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Home header / Sign In",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Home / Py Notebook",
+    "status": "LIMITED",
+    "evidence": "Explicit unavailable notice shown."
+  },
+  {
+    "name": "Home / 3D and XR Studio",
+    "status": "LIMITED",
+    "evidence": "Explicit unavailable notice shown."
+  },
+  {
+    "name": "Home card / jr",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Home card / bl",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Home card / pe",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Home card / pt",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Home / Machine Learning Environment",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "ML Close",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Sprite API integrated execution",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Ctrl+Enter shortcut",
+    "status": "PASS",
+    "evidence": "Shortcut ran Python and emitted All sprite checks passed. The selected-sprite status bar referred to Bear, not Sprite1."
+  },
+  {
+    "name": "Python Ctrl+F shortcut",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Ctrl+S shortcut",
+    "status": "PASS",
+    "evidence": "Project download event emitted"
+  },
+  {
+    "name": "Python traceback and filename",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python infinite-loop cancellation",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python malformed JSON import",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python new .py file import",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python cross-file imports",
+    "status": "PASS",
+    "evidence": "Python terminal · Run your code to get started.\nRunning Sprite1.py…\nAll sprite checks passed\nProcess finished.\nRunning Sprite1.py…\nTraceback (most recent call last):\n  File \"/lib/python314.zip/_pyodide/_base.py\", line 619, in eval_code_async\n    await CodeRunner(\n    ...<10 lines>...\n    .run_async(globals, locals)\n  File \"/lib/python314.zip/_pyodide/_base.py\", line 420, in run_async\n    coroutine = eval(self.code, globals, locals)\n  File \"<exec>\", line 1, in <module>\n  File \"Sprite1.py\", line 1, in <module>\n    print(1 / 0)\n          ~~^~~\nZeroDivisionError: division by zero\n\nRunning Sprite1.py…\nExecution stopped.\nExpected property name or '}' in JSON at position 1 (line 1 column 2)\nRunning Sprite1.py…\nModule import passed\nProcess finished.\n"
+  },
+  {
+    "name": "Python Ctrl+Z",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Ctrl+Shift+Z",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Ctrl+/",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Edit menu Undo",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Edit menu Redo",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Edit / Restore deleted file (original)",
+    "status": "FIXED",
+    "evidence": false,
+    "originalStatus": "FAIL",
+    "resolvedBy": "Python Edit / Restore deleted file retest"
+  },
+  {
+    "name": "Python Edit / Restore deleted file retest",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Restore preserves file content",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python rejects invalid filename",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python rejects duplicate filename",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Tutorial Try it opens visible Blocks workspace (original)",
+    "status": "FIXED",
+    "evidence": false,
+    "originalStatus": "FAIL",
+    "resolvedBy": "Tutorial Try it 1 navigation retest"
+  },
+  {
+    "name": "Tutorial Try it 1 navigation retest",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Tutorial Try it 2 navigation retest",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Tutorial Try it 3 navigation retest",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Tutorial Try it 4 navigation retest",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python File menu Load",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python repeat import after cancel / 1",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python repeat import after cancel / 2",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Ctrl+Shift+Enter Run All",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python header Save icon",
+    "status": "PASS",
+    "evidence": "Project download event emitted"
+  },
+  {
+    "name": "Python File menu Save",
+    "status": "PASS",
+    "evidence": "Project download event emitted"
+  },
+  {
+    "name": "Python Green flag Run All",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python Find / no matches",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Block loops and motion integration",
+    "status": "PASS",
+    "evidence": "Two repeats, turn, x/y changes produced x=45 y=10 direction=180."
+  },
+  {
+    "name": "Virtual sensor slider / st",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Virtual sensor slider / sl",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Virtual sensor slider / sd",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Virtual board LED, motor and servo",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Virtual board LED off and stop motor",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Sound Volume and Pitch sliders",
+    "status": "PASS",
+    "evidence": true
+  },
+  {
+    "name": "Python dialog Escape cancellation",
+    "status": "PASS",
+    "evidence": true
+  }
+]
