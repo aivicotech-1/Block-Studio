@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Category filter",
+    "passed": true
+  },
+  {
+    "name": "Empty search",
+    "passed": true
+  },
+  {
+    "name": "Selected backdrop embedded on stage",
+    "passed": true
+  },
+  {
+    "name": "Backdrop survives reload",
+    "passed": true
+  },
+  {
+    "name": "Paint stroke enables Undo",
+    "passed": true
+  },
+  {
+    "name": "Paint undo enables Redo",
+    "passed": true
+  },
+  {
+    "name": "Paint saved to stage",
+    "passed": true
+  },
+  {
+    "name": "Rename backdrop",
+    "passed": true
+  },
+  {
+    "name": "Remove backdrop",
+    "passed": true
+  },
+  {
+    "name": "Upload backdrop",
+    "passed": true
+  },
+  {
+    "name": "Surprise adds and selects a backdrop",
+    "passed": true,
+    "evidence": "Browser observed backdrop count increase by one and chooser close."
+  },
+  {
+    "name": "Gallery previews rendered",
+    "passed": true,
+    "evidence": "All 24 preview images were complete with nonzero natural width."
+  },
+  {
+    "name": "Sprite add-on flyout accessible",
+    "passed": true,
+    "evidence": "Choose a Sprite was visible in the existing flyout."
+  },
+  {
+    "name": "Existing sprite library opens",
+    "passed": true,
+    "evidence": "The existing sprite library search input was visible."
+  }
+]

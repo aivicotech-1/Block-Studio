@@ -1,0 +1,57 @@
+[
+  {
+    "check": "New Python helper",
+    "passed": true,
+    "evidence": "agency_helper.py saved and visible in sidebar"
+  },
+  {
+    "check": "Helper module import",
+    "passed": true,
+    "evidence": "Hello, Agency"
+  },
+  {
+    "check": "Import Python file",
+    "passed": true,
+    "evidence": "imported_helper.py saved with VALUE = 42"
+  },
+  {
+    "check": "CSV import and execution",
+    "passed": true,
+    "evidence": "3 rows, including Ada and Grace"
+  },
+  {
+    "check": "Text import and execution",
+    "passed": true,
+    "evidence": "Agency notebook file test."
+  },
+  {
+    "check": "Image import and execution",
+    "passed": true,
+    "evidence": "Image saved: red0.png"
+  },
+  {
+    "check": "Package flyout action",
+    "passed": true,
+    "evidence": "Install Packages panel opened"
+  },
+  {
+    "check": "Extension flyout action",
+    "passed": true,
+    "evidence": "Add Extension panel opened"
+  },
+  {
+    "check": "Keyboard arrow navigation",
+    "passed": true,
+    "evidence": "ArrowDown focused Import Python file"
+  },
+  {
+    "check": "Keyboard Escape",
+    "passed": true,
+    "evidence": "aria-expanded returned false"
+  },
+  {
+    "check": "Persistence",
+    "passed": true,
+    "evidence": "Helper files and embedded cells present after reload"
+  }
+]

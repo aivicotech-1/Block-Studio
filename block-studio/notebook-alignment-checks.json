@@ -1,0 +1,23 @@
+{
+  "change": "Notebook reference alignment",
+  "checks": {
+    "node_tests_passed": 21,
+    "javascript_syntax": "passed",
+    "desktop_viewport": [
+      1920,
+      990
+    ],
+    "stage_dimensions": [
+      605,
+      454
+    ],
+    "stage_center_offset": [
+      0,
+      0
+    ],
+    "horizontal_overflow": false,
+    "insert_delete_cells": "passed",
+    "blocks_original_controls_restored": "passed"
+  },
+  "scope": "Notebook presentation; existing branding and sprite artwork retained. Existing notebook cells retained. Stage backdrop selected through its normal control, and selected sprite set to x=0,y=0."
+}

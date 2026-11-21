@@ -1,0 +1,34 @@
+[
+  {
+    "childrenContained": true,
+    "headerHeight": 60,
+    "rowsSeparate": true,
+    "toolbarControlsContained": true,
+    "toolbarTop": 60,
+    "width": 838
+  },
+  {
+    "childrenContained": true,
+    "headerHeight": 60,
+    "rowsSeparate": true,
+    "toolbarControlsContained": true,
+    "toolbarTop": 60,
+    "width": 1100
+  },
+  {
+    "childrenContained": true,
+    "headerHeight": 60,
+    "rowsSeparate": true,
+    "toolbarControlsContained": true,
+    "toolbarTop": 60,
+    "width": 1200
+  },
+  {
+    "childrenContained": true,
+    "headerHeight": 60,
+    "rowsSeparate": true,
+    "toolbarControlsContained": true,
+    "toolbarTop": 60,
+    "width": 1200
+  }
+]

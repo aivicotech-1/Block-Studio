@@ -89,7 +89,7 @@
     const config=api.getConfiguration();$('pf-enabled-extensions').replaceChildren();
     for(const extension of enabledCatalog(config).filter(e=>e.id!=='sprite'&&config.extensions.includes(e.id))){const b=button(extension.icon+'  '+extension.name,()=>showManager('extensions'));b.className='module';$('pf-enabled-extensions').append(b);}
   }
-  function showManager(tab='extensions'){managerTab=tab;$('tools-search').value='';render();if(!dialog.open)dialog.showModal();}
+  function showManager(tab='extensions'){managerTab=tab;$('tools-search').value='';if(!operation)setStatus(tab==='packages'?'Choose a recommended package or enter a package name.':'Choose an extension to add to this project.');render();if(!dialog.open)dialog.showModal();}
   $('pf-packages').onclick=()=>showManager('packages');$('pf-extensions').onclick=()=>showManager('extensions');
   $('tools-close').onclick=()=>dialog.close();$('tools-tab-extensions').onclick=()=>{managerTab='extensions';render();};$('tools-tab-packages').onclick=()=>{managerTab='packages';render();};
   $('tools-search').oninput=render;$('tools-category').onchange=render;
@@ -155,18 +155,18 @@
   notebook.innerHTML=`<div class="notebook-bar"><div><strong>Py Notebook</strong><small>Cells share one Python session</small></div><button id="notebook-run-all">▶ Run all cells</button><button id="notebook-stop">■ Stop</button><button id="notebook-reset">Reset kernel</button><button id="notebook-export">Export .ipynb</button><button id="notebook-import">Import .ipynb</button></div><div id="notebook-cells"></div><button id="notebook-add">＋ Add code cell</button><p id="notebook-status" role="status">Ready.</p>`;
   document.querySelector('main').prepend(notebook);
   const notebookTab=button('▤ Notebook',()=>window.tab('tN'));notebookTab.id='tN';notebookTab.setAttribute('role','tab');notebookTab.setAttribute('aria-selected','false');document.querySelector('.tabs').insertBefore(notebookTab,document.querySelector('.run'));
-  let activeCell=null,cellCount=0,notebookRunning=false;
+  let activeCell=null,cellCount=0,notebookRunning=false,selectedCell=null,batchCancelled=false;
   const notebookFigures=new Map();
   function cellId(){return 'cell-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,8);}
   function updateCells(cells){api.setNotebook(cells);renderNotebook();}
   function renderNotebook(){
     const cells=api.getNotebook(),container=$('notebook-cells');container.replaceChildren();
     cells.forEach((cell,index)=>{
-      const card=document.createElement('article');card.className='notebook-cell';card.dataset.cell=cell.id;
+      const card=document.createElement('article');card.className='notebook-cell';card.dataset.cell=cell.id;card.classList.toggle('selected',cell.id===selectedCell);card.addEventListener('focusin',()=>{selectedCell=cell.id;document.querySelectorAll('.notebook-cell').forEach(c=>c.classList.toggle('selected',c.dataset.cell===selectedCell));document.dispatchEvent(new Event('studio:notebook-selection'));});
       const bar=document.createElement('div');bar.className='notebook-cell-bar';bar.append(text((index+1)+'. '+(cell.type==='code'?'Python':'Markdown'),'strong'));
       const edit=()=>container.querySelector('[data-cell="'+cell.id+'"] textarea');
       bar.append(button('Run cell',()=>runCell(cell.id),notebookRunning||cell.type!=='code'),button('↑',()=>moveCell(cell.id,-1),notebookRunning||index===0),button('↓',()=>moveCell(cell.id,1),notebookRunning||index===cells.length-1),button('Duplicate',()=>{const next=api.getNotebook();next.splice(index+1,0,{...cell,id:cellId(),outputs:[]});updateCells(next);},notebookRunning||cells.length>=100),button(cell.type==='code'?'To markdown':'To code',()=>{const next=api.getNotebook();next[index].type=cell.type==='code'?'markdown':'code';updateCells(next);},notebookRunning),button('Delete',()=>updateCells(api.getNotebook().filter(c=>c.id!==cell.id)),notebookRunning||cells.length===1));
-      const source=document.createElement('textarea');source.value=cell.source;source.spellcheck=false;source.setAttribute('aria-label','Notebook cell '+(index+1));source.rows=Math.max(3,Math.min(18,cell.source.split('\n').length+1));source.oninput=()=>{const next=api.getNotebook();next.find(c=>c.id===cell.id).source=source.value;api.setNotebook(next);};
+      const source=document.createElement('textarea');source.value=cell.source;source.spellcheck=false;source.wrap='off';source.setAttribute('aria-label','Notebook cell '+(index+1));source.rows=Math.max(3,Math.min(18,cell.source.split('\n').length+1));source.oninput=()=>{const next=api.getNotebook();next.find(c=>c.id===cell.id).source=source.value;api.setNotebook(next);};
       const output=document.createElement('pre');output.className='notebook-output';output.setAttribute('role','log');output.textContent=cell.outputs.join('\n');
       for(const source of notebookFigures.get(cell.id)||[]){const image=new Image();image.alt='Notebook chart';image.src=source;image.className='python-figure';output.append(image);}
       card.append(bar,source,output);
@@ -183,10 +183,10 @@
     catch(error){$('notebook-status').textContent=error.message;throw error;}
     finally{activeCell=null;notebookRunning=insideBatch;renderNotebook();}
   }
-  async function runAll(){if(notebookRunning||api.isBusy())return;notebookRunning=true;try{for(const cell of api.getNotebook())if(cell.type==='code')await runCell(cell.id,true);$('notebook-status').textContent='All cells finished.';}catch(_){}finally{notebookRunning=false;renderNotebook();}}
+  async function runAll(ids=null){if(notebookRunning||api.isBusy())return;batchCancelled=false;notebookRunning=true;try{for(const cell of api.getNotebook()){if(batchCancelled)break;if(cell.type==='code'&&(!Array.isArray(ids)||ids.includes(cell.id)))await runCell(cell.id,true);}$('notebook-status').textContent='All cells finished.';}catch(_){}finally{notebookRunning=false;renderNotebook();}}
   // Avoid unhandled rejections from individual Run buttons.
   const previousRunCell=runCell;runCell=async(...args)=>{try{return await previousRunCell(...args);}catch(error){if(args[1])throw error;}};
-  $('notebook-run-all').onclick=runAll;$('notebook-stop').onclick=()=>api.restart();$('notebook-reset').onclick=()=>{api.restart();cellCount=0;$('notebook-status').textContent='Kernel reset. Run cells to recreate variables.';};
+  $('notebook-run-all').onclick=()=>runAll();$('notebook-stop').onclick=()=>{batchCancelled=true;api.restart();};$('notebook-reset').onclick=()=>{api.restart();cellCount=0;$('notebook-status').textContent='Kernel reset. Run cells to recreate variables.';};
   $('notebook-add').onclick=()=>{const cells=api.getNotebook();if(cells.length>=100)return;cells.push({id:cellId(),type:'code',source:'',outputs:[]});updateCells(cells);};
   const notebookInput=document.createElement('input');notebookInput.type='file';notebookInput.accept='.ipynb';notebookInput.hidden=true;notebook.append(notebookInput);
   $('notebook-import').onclick=()=>notebookInput.click();notebookInput.onchange=async()=>{try{const file=notebookInput.files[0];if(!file)return;if(file.size>2000000)throw Error('Notebook exceeds 2 MB.');const data=JSON.parse(await file.text());if(data.nbformat!==4||!Array.isArray(data.cells))throw Error('Choose a Jupyter notebook in nbformat 4.');const cells=data.cells.filter(c=>['code','markdown'].includes(c.cell_type)).map(c=>({id:cellId(),type:c.cell_type,source:Array.isArray(c.source)?c.source.join(''):c.source,outputs:[]}));if(!await api.ask('Import notebook','Replace the current notebook cells?',undefined,['Import notebook']))return;api.restart();updateCells(catalog.normalizeNotebook(cells));$('notebook-status').textContent='Notebook imported. Cells have not been executed.';}catch(error){$('notebook-status').textContent=error.message;}finally{notebookInput.value='';}};
@@ -210,5 +210,5 @@
   document.addEventListener('click',event=>{if(event.target.closest('[data-w="pn"]')){event.preventDefault();event.stopImmediatePropagation();$('land').hidden=true;window.tab('tN');}},true);
   document.addEventListener('keydown',event=>{if(document.body.classList.contains('notebook-mode')&&(event.ctrlKey||event.metaKey)&&event.key==='Enter'){event.preventDefault();event.stopPropagation();if(event.shiftKey)runAll();else{const id=event.target.closest('[data-cell]')?.dataset.cell;if(id)runCell(id);}}});
   document.addEventListener('studio:configuration',renderNotebook);
-  sidebar();renderNotebook();
+  window.StudioNotebook={render:renderNotebook,selected:()=>selectedCell||api.getNotebook()[0]?.id,select:id=>{selectedCell=id;renderNotebook();},runSelected:()=>runCell(selectedCell||api.getNotebook()[0]?.id),runAll:()=>runAll(),runRange:side=>{const cells=api.getNotebook(),index=cells.findIndex(c=>c.id===(selectedCell||cells[0]?.id));return runAll(cells.filter((_,i)=>side==='above'?i<index:i>index).map(c=>c.id));},add:direction=>{if(notebookRunning)return;const cells=api.getNotebook();if(cells.length>=100)return;const index=cells.findIndex(c=>c.id===(selectedCell||cells[0]?.id)),cell={id:cellId(),type:'code',source:'',outputs:[]};cells.splice(Math.max(0,index+(direction==='above'?0:1)),0,cell);selectedCell=cell.id;updateCells(cells);},remove:()=>{if(notebookRunning)return;const cells=api.getNotebook();if(cells.length>1)updateCells(cells.filter(c=>c.id!==(selectedCell||cells[0]?.id)));},setType:type=>{if(notebookRunning)return;const cells=api.getNotebook(),cell=cells.find(c=>c.id===(selectedCell||cells[0]?.id));if(cell){cell.type=type;updateCells(cells);}},clear:()=>{if(notebookRunning)return;notebookFigures.clear();updateCells(api.getNotebook().map(c=>({...c,outputs:[]})));},busy:()=>notebookRunning};sidebar();renderNotebook();
 })();

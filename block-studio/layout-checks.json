@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Notebook compact",
+    "mainTop": 110,
+    "pageOverflow": false,
+    "tabsBottom": 110,
+    "width": 838
+  },
+  {
+    "name": "Blocks compact",
+    "mainTop": 151,
+    "pageOverflow": false,
+    "tabsBottom": 151,
+    "width": 838
+  },
+  {
+    "name": "Costumes compact",
+    "mainTop": 151,
+    "pageOverflow": false,
+    "tabsBottom": 151,
+    "width": 838
+  },
+  {
+    "name": "Sounds compact",
+    "mainTop": 151,
+    "pageOverflow": false,
+    "tabsBottom": 151,
+    "width": 838
+  },
+  {
+    "name": "Python editor compact",
+    "mainTop": 147,
+    "pageOverflow": false,
+    "tabsBottom": 147,
+    "width": 838
+  },
+  {
+    "name": "Notebook laptop",
+    "mainTop": 115,
+    "pageOverflow": false,
+    "tabsBottom": 115,
+    "width": 1280
+  }
+]
