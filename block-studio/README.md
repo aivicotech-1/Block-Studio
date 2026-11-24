@@ -29,3 +29,9 @@ Object Detection, Pose Classifier and Hand Pose Classifier need pretrained Tenso
 - `LIB` (sprites) and `BL` (backdrops) lists in `script.js`: swap in your own artwork.
 - `BG` and the board block lists (`ARD`, `ESP`, `MB`, `QK`, ...): board-specific blocks.
 - `EXS`: the example projects under Learn > Examples.
+
+
+
+## 3D and XR Studio
+
+Open `/?editor=xr` or choose **3D and XR Studio** on the home screen. Project management, seven scene templates, 3D editing, basic physics, CSG, sketch extrusion, paths, behavior cards and Python scene scripts are available. See [XR-STUDIO.md](XR-STUDIO.md) for the tested features and unfinished parity items, including trackers. Core dependencies are bundled locally.
